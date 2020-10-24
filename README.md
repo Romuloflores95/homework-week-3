@@ -1,10 +1,10 @@
 # homework-week-3
 
 1. to initilize the project to create a password generator, i first had to start by writing a list of caracters that it would have to select from. 
-    > var lowerCasedCharacters
-    > var uppercasedCharacters
-    > var specialCharacters
-    > var numericCharacters
+    - var lowerCasedCharacters
+    - var uppercasedCharacters
+    - var specialCharacters
+    - var numericCharacters
 
 2. then I created a password function which willl contain the following commands.
 
