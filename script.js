@@ -7,7 +7,6 @@ var specialCharacters = ["!","@","#","$","%","&", "(",")","_","-","+","}","{","[
 var numericCharacters = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 
-
 function getPasswordOptions() {
   //parseInt() is to turn any string into an interger.   
   var length = parseInt(
@@ -84,7 +83,19 @@ function generatePassword() {
   var possibleCharacters = [];
   var guaranteedCharacters = [];
 
-  
+
+  // these conditional statements are repeated to assure that we get atleast one character from each set
+  if (options.hasLowerCasedCharacters) {
+    possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
+    guaranteedCharacters.push(getRandom(lowerCasedCharacters));
+  }
+
+
+  if (options.hasUpperCasedCharacters) {
+    possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
+    guaranteedCharacters.push(getRandom(upperCasedCharacters));
+  }
+
   if (options.hasSpecialCharacters) {
     possibleCharacters = possibleCharacters.concat(specialCharacters);
     guaranteedCharacters.push(getRandom(specialCharacters));
@@ -95,33 +106,23 @@ function generatePassword() {
     possibleCharacters = possibleCharacters.concat(numericCharacters);
     guaranteedCharacters.push(getRandom(numericCharacters));
   }
+ 
 
-  
-  if (options.hasLowerCasedCharacters) {
-    possibleCharacters = possibleCharacters.concat(lowerCasedCharacters);
-    guaranteedCharacters.push(getRandom(lowerCasedCharacters));
-  }
-
-  
-  if (options.hasUpperCasedCharacters) {
-    possibleCharacters = possibleCharacters.concat(upperCasedCharacters);
-    guaranteedCharacters.push(getRandom(upperCasedCharacters));
-  }
-
-  
+  // options variable equals function getPasswordOptions which is basically to verify. length of number you chose 
   for (var i = 0; i < options.length; i++) {
     var possibleCharacter = getRandom(possibleCharacters);
-
+// result stores the possible character once and pushes the next
     result.push(possibleCharacter);
   }
-
+console.log(possibleCharacter);
+console.log(possibleCharacters);
   
   for (var i = 0; i < guaranteedCharacters.length; i++) {
     result[i] = guaranteedCharacters[i];
   }
-
+//
   
-  return result.join("");//slight difference
+  return result.join("");//joint string
   
 }
 
@@ -138,3 +139,4 @@ function writePassword() {
 
 
 generateBtn.addEventListener('click', writePassword);
+
